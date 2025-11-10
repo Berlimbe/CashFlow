@@ -61,7 +61,7 @@ graph TD
     A -->|Ícone Categoria| C(CategoriaScreen)
     B -->|Salvar/Excluir| A
     C -->|Voltar| A
-´´´
+```
 
 ### Estrutura do Banco de Dados (Room)
 
