@@ -1,20 +1,20 @@
-# PROJETO FINAL: Controle Financeiro Pessoal (CashFlow App)
+# 💰 PROJETO FINAL: Controle Financeiro Pessoal (CashFlow App)
 
-O **CashFlow App** é um aplicativo Android desenvolvido em Kotlin e Jetpack Compose com o objetivo de auxiliar o usuário no controle de suas finanças pessoais de forma prática e offline, garantindo o registro e a visualização organizada de receitas e despesas.
+O **CashFlow App** é um aplicativo Android desenvolvido em **Kotlin** e **Jetpack Compose** com o objetivo de auxiliar o usuário no controle de suas finanças pessoais de forma prática e offline, garantindo o registro e a visualização organizada de receitas e despesas.
 
 ---
 
 ## 1. Informações e Membros
 
-### Integrantes da Equipe
+### 👥 Integrantes da Equipe
 
 | Nome | Área de Contribuição Primária |
 | :--- | :--- |
-| **Marlon Zorzi Kososki** | Gerência de Dados (Room, Entidades, Queries), otimizou o código e limpou comentários desnecessários |
-| **Carlos Eduardo Bittencourt da Costa** | Arquitetura, ViewModel e Integração (Coroutines, Retrofit), auxiliou na implantação e pesquisa da apí externa retrofit |
-| **Bernardo Aurélio Almeida Rosa** | Interface do Usuário (Compose), Navegação entre páginas (Navigation Compose) e Experiência do Usuário (UX), testes de funcionalidades |
+| **Marlon Zorzi Kososki** | Gerência de Dados (Room, Entidades, Queries), otimizou o código e limpou comentários desnecessários. |
+| **Carlos Eduardo Bittencourt da Costa** | Arquitetura, ViewModel e Integração (Coroutines, Retrofit), auxiliou na implantação e pesquisa da API externa Retrofit. |
+| **Bernardo Aurélio Almeida Rosa** | Interface do Usuário (Compose), Navegação entre páginas (Navigation Compose), Experiência do Usuário (UX), testes de funcionalidades. |
 
-### Tecnologias Utilizadas
+### 🛠️ Tecnologias Utilizadas
 
 * **Linguagem:** Kotlin
 * **Ambiente:** Android Studio
@@ -31,13 +31,13 @@ O **CashFlow App** é um aplicativo Android desenvolvido em Kotlin e Jetpack Com
 
 Todos os requisitos obrigatórios foram implementados com sucesso:
 
-| Requisito Funcional | Implementação | Detalhe da Solução |
+| Requisito Funcional | Status | Detalhe da Solução |
 | :--- | :--- | :--- |
-| **RF01:** Cadastrar Lançamentos (CRUD: Create) | Completo | Implementado na `AddScreen`. Permite informar Descrição, Valor, Tipo (Receita/Despesa), Data (`DatePicker`) e **Categoria** (Dropdown). |
-| **RF02:** Editar e Excluir (CRUD: Update, Delete) | Completo | A `DashboardScreen` torna os itens clicáveis. A navegação passa o ID do item para a `AddScreen`, que carrega o formulário para edição ou exclusão. |
-| **RF03:** Listar Lançamentos (CRUD: Read) | Completo | `DashboardScreen` exibe a lista completa de lançamentos em um `LazyColumn`, ordenados por data. |
-| **RF04:** Saldo Total e Resumo por Categoria | Completo | **Saldo Total:** Exibido no Dashboard com correção no SQL (`IFNULL`) para garantir atualização imediata, mesmo com lançamentos únicos. **Resumo por Categoria:** Exibido no Dashboard utilizando uma query `GROUP BY` no Room. |
-| **RF05:** Armazenamento Persistente | Completo | Uso obrigatório do Room Database. O aplicativo é 100% funcional offline. |
+| **RF01:** Cadastrar Lançamentos (CRUD: Create) | ✅ Completo | Implementado na `AddScreen`. Permite informar Descrição, Valor, Tipo, Data e **Categoria** (Dropdown). |
+| **RF02:** Editar e Excluir (CRUD: Update, Delete) | ✅ Completo | A `DashboardScreen` torna os itens clicáveis. A navegação passa o ID para a `AddScreen` (Modo Edição/Exclusão). |
+| **RF03:** Listar Lançamentos (CRUD: Read) | ✅ Completo | `DashboardScreen` exibe a lista completa de lançamentos em um `LazyColumn`, ordenados por data. |
+| **RF04:** Saldo Total e Resumo por Categoria | ✅ Completo | **Saldo Total:** Exibido no Dashboard com correção no SQL (`IFNULL`) para garantir atualização imediata. **Resumo por Categoria:** Obtido e exibido utilizando uma query `GROUP BY` no Room. |
+| **RF05:** Armazenamento Persistente | ✅ Completo | Uso obrigatório do **Room Database**. O aplicativo é totalmente funcional offline. |
 
 ---
 
@@ -45,32 +45,28 @@ Todos os requisitos obrigatórios foram implementados com sucesso:
 
 ### A. Padrão Arquitetural (MVVM)
 
-O projeto segue rigorosamente o padrão **MVVM**:
-* **View (UI):** Funções `@Composable` (ex: `DashboardScreen`, `AddScreen`). Observam os dados reativos (`StateFlow/collectAsState`) do ViewModel.
-* **ViewModel:** (`MainViewModel`). Gerencia o estado e a lógica de negócios, interagindo com o Repositório e expondo dados para a UI via `StateFlow`.
-* **Model/Data Layer:** (`AppRepository`, `AppDao`, `AppDatabase`). Responsável por coordenar o acesso ao Room e ao Retrofit.
+O projeto segue rigorosamente o padrão **MVVM (Model-View-ViewModel)** com separação clara de responsabilidades:
+* **View (UI):** Funções `@Composable` observam os dados reativos (`StateFlow/collectAsState`).
+* **ViewModel:** Gerencia o estado, lógica de negócios e coordena a busca de dados via `StateFlow` e Coroutines.
+* **Model/Data Layer:** `AppRepository` coordena o acesso ao banco de dados Room e ao serviço Retrofit.
 
-### B. Diagrama de Navegação
+### B. Diagrama de Navegação (CORRIGIDO)
 
 O esquema de navegação é gerenciado pelo `AppNavigation` (NavHost), utilizando rotas dinâmicas:
 
 ```mermaid
 graph TD
-    A[DashboardScreen (RF03/RF04)] -->|Ícone +| B(AddScreen: Modo Cadastro)
-    A -->|Clique no Item| B
-    A -->|Ícone Categoria| C(CategoriaScreen)
+    A[DashboardScreen (RF03/RF04)] -->|Icone Add| B(AddScreen: Cadastro/Edição)
+    A -->|Clique Item| B
+    A -->|Icone Categoria| C(CategoriaScreen)
     B -->|Salvar/Excluir| A
     C -->|Voltar| A
-```
-
-### Estrutura do Banco de Dados (Room)
 
 erDiagram
     CATEGORIA {
         int id PK "auto incremento"
         string nome
     }
-
     LANCAMENTO {
         int id PK "auto incremento"
         string descricao
@@ -79,7 +75,7 @@ erDiagram
         long data
         int categoriaId FK "Pode ser Nulo"
     }
-
+    
     CATEGORIA ||--o{ LANCAMENTO : tem
 
 ---
