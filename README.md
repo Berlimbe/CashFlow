@@ -12,7 +12,7 @@ O **CashFlow App** é um aplicativo Android desenvolvido em **Kotlin** e **Jetpa
 | :--- | :--- |
 | **Marlon Zorzi Kososki** | Gerência de Dados (Room, Entidades, Queries), otimizou o código e limpou comentários desnecessários. |
 | **Carlos Eduardo Bittencourt da Costa** | Arquitetura, ViewModel e Integração (Coroutines, Retrofit), auxiliou na implantação e pesquisa da API externa Retrofit. |
-| **Bernardo Aurélio Almeida Rosa** | Interface do Usuário (Compose), Navegação entre páginas (Navigation Compose), Experiência do Usuário (UX), testes de funcionalidades. |
+| **Bernardo Aurélio Almeida Rosa** | Interface do Usuário (Compose), Navegação entre páginas (Navigation Compose) e Experiência do Usuário (UX), testes de funcionalidades. |
 
 ### 🛠️ Tecnologias Utilizadas
 
@@ -29,8 +29,6 @@ O **CashFlow App** é um aplicativo Android desenvolvido em **Kotlin** e **Jetpa
 
 ## 2. Implementação dos Requisitos Funcionais (RF)
 
-Todos os requisitos obrigatórios foram implementados com sucesso:
-
 | Requisito Funcional | Status | Detalhe da Solução |
 | :--- | :--- | :--- |
 | **RF01:** Cadastrar Lançamentos (CRUD: Create) | ✅ Completo | Implementado na `AddScreen`. Permite informar Descrição, Valor, Tipo, Data e **Categoria** (Dropdown). |
@@ -43,23 +41,18 @@ Todos os requisitos obrigatórios foram implementados com sucesso:
 
 ## 3. Detalhamento Arquitetural e Estrutural
 
-### A. Padrão Arquitetural (MVVM)
-
-O projeto segue rigorosamente o padrão **MVVM (Model-View-ViewModel)** com separação clara de responsabilidades:
-* **View (UI):** Funções `@Composable` observam os dados reativos (`StateFlow/collectAsState`).
-* **ViewModel:** Gerencia o estado, lógica de negócios e coordena a busca de dados via `StateFlow` e Coroutines.
-* **Model/Data Layer:** `AppRepository` coordena o acesso ao banco de dados Room e ao serviço Retrofit.
-
-### B. Diagrama de Navegação (CORRIGIDO)
+### A. Diagrama de Navegação
 
 O esquema de navegação é gerenciado pelo `AppNavigation` (NavHost), utilizando rotas dinâmicas:
 
+```mermaid
 graph TD
     A[DashboardScreen (RF03/RF04)] -->|Icone Add| B(AddScreen: Cadastro/Edição)
     A -->|Clique Item| B
     A -->|Icone Categoria| C(CategoriaScreen)
     B -->|Salvar/Excluir| A
     C -->|Voltar| A
+```
 
 ### C. Estrutura do Banco de Dados (Diagrama ER Corrigido)
 erDiagram
