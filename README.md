@@ -41,17 +41,17 @@ O **CashFlow App** é um aplicativo Android desenvolvido em **Kotlin** e **Jetpa
 
 ## 3. Detalhamento Arquitetural e Estrutural
 
-### A. Diagrama de Navegação
+### Diagrama de Navegação
 
 O esquema de navegação é gerenciado pelo `AppNavigation` (NavHost), utilizando rotas dinâmicas:
-
+```
 [Dashboard (Tela Principal)]
-│
-├─► [AddScreen: Modo Cadastro] (Via Botão "+")
-├─► [AddScreen: Modo Edição]   (Via Clique no Item da Lista)
-└─► [CategoriaScreen] (Via Ícone no Topo)
-
-### C. Estrutura do Banco de Dados (Diagrama ER Corrigido)
+│ 
+├─► [AddScreen: Modo Cadastro] (Via Botão "+") 
+├─► [AddScreen: Modo Edição]   (Via Clique no Item da Lista) 
+└─► [CategoriaScreen] (Via Ícone no Topo) 
+```
+### Estrutura do Banco de Dados (Diagrama ER Corrigido)
 erDiagram
     CATEGORIA {
         int id PK "auto incremento"
