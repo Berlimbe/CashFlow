@@ -54,7 +54,6 @@ O projeto segue rigorosamente o padrão **MVVM (Model-View-ViewModel)** com sepa
 
 O esquema de navegação é gerenciado pelo `AppNavigation` (NavHost), utilizando rotas dinâmicas:
 
-```mermaid
 graph TD
     A[DashboardScreen (RF03/RF04)] -->|Icone Add| B(AddScreen: Cadastro/Edição)
     A -->|Clique Item| B
@@ -62,6 +61,7 @@ graph TD
     B -->|Salvar/Excluir| A
     C -->|Voltar| A
 
+### C. Estrutura do Banco de Dados (Diagrama ER Corrigido)
 erDiagram
     CATEGORIA {
         int id PK "auto incremento"
