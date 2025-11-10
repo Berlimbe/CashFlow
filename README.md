@@ -52,7 +52,6 @@ graph TD
     A -->|Icone Categoria| C(CategoriaScreen)
     B -->|Salvar/Excluir| A
     C -->|Voltar| A
-```
 
 ### C. Estrutura do Banco de Dados (Diagrama ER Corrigido)
 erDiagram
@@ -70,6 +69,7 @@ erDiagram
     }
     
     CATEGORIA ||--o{ LANCAMENTO : tem
+```
 
 ---
 
