@@ -86,3 +86,7 @@ Integração:	O MainViewModel utiliza Coroutines para chamar o AppRepository, qu
 - Permissão de Internet: A permissão android.permission.INTERNET já está incluída no AndroidManifest.xml para a funcionalidade Retrofit.
 - Executar: Execute o aplicativo em um emulador ou dispositivo físico (API 25+).
 - Teste de Categorias: Para usar a função de cadastro, vá ao ícone de Categoria (canto superior direito) e adicione categorias antes de fazer novos lançamentos.
+- Teste de Despesa/Receita: Clicar no ícone de + e criar uma nova Despesa/Receita
+- Para adicionar uma Categoria a uma Despesa/Receita Apertar enter enquanto o campo de categoria estiver selecionado.
+- Funcionalidades: Editar uma Despesa/Receita, Excluir, Criar, Listar, Adicionar Categorias que podem ser escolhidos no momento de criação de uma nova Receita/Despesa.
+- RetroFit com API Externa mostrando Comparação de Moedas Internacionais Real/Dólar.
